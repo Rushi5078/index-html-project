@@ -1,15 +1,18 @@
 pipeline {
     agent any
+
     stages {
-        stage('Clone Code') {
+        stage('Clone GitHub Repo') {
             steps {
-                git 'https://github.com/your-username/index-html-project.git'
+                git 'https://github.com/Rushi5078/index-html-project.git'
             }
         }
-        stage('Deploy to EC2') {
+
+        stage('Deploy to NGINX') {
             steps {
                 sh '''
-                sudo cp index.html /var/www/html/index.html
+                sudo cp index.html /var/www/html/
+                sudo cp styles.css /var/www/html/
                 sudo systemctl restart nginx
                 '''
             }
